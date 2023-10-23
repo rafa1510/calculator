@@ -21,6 +21,10 @@ function multiply(numOne, numTwo)
 
 function divide(numOne, numTwo)
 {
+    if (numTwo == 0)
+    {
+        return Infinity;
+    }
     return numOne / numTwo;
 }
 
@@ -63,7 +67,7 @@ operatorButtons.forEach((operator) =>
     operator.addEventListener("click", () => 
     {
         // This is here so that we don't push no numbers into the chosenNumbers array
-        if (currentDisplay != "")
+        if (currentDisplay != "" && currentDisplay != NaN)
         {
             chosenNumbers.push(parseInt(currentDisplay));
         }
@@ -74,10 +78,17 @@ operatorButtons.forEach((operator) =>
             let result = operate(chosenNumbers[0], chosenNumbers[1], chosenOperator);
             let roundedResult = Math.round(result * 100) / 100;
             // Display result from calling operate
-            display(roundedResult);
+            if (chosenOperator == "/" && chosenNumbers[1] == 0)
+            {
+                display("lol")
+            }
+            else
+            {
+                display(roundedResult);
+                chosenNumbers.splice(0, chosenNumbers.length, parseInt(result));
+            }
             // Clear currentDisplay, chosenNumbers, chosenOperator to make space for the next operation
             currentDisplay = "";
-            chosenNumbers.splice(0, 2, parseInt(result));
             chosenOperator = "";
         }
 
@@ -97,18 +108,28 @@ let chosenOperator = "";
 let equalButton = document.querySelector(".equal");
 equalButton.addEventListener("click", () => 
 {
-    // Makes sure that there are numbers in the chosenNumbers array
-    if (chosenNumbers.length != 0)
+    // Makes sure that there are numbers in the chosenNumbers array & that there's an operator
+    if (chosenNumbers.length != 0 && chosenOperator != "")
     {
         // Add in second number to chosenNumbers array, since it's not being added by clicking an operator
-        chosenNumbers.push(parseInt(currentDisplay));
+        if (currentDisplay != NaN)
+        {
+            chosenNumbers.push(parseInt(currentDisplay));
+        }
         let result = operate(chosenNumbers[0], chosenNumbers[1], chosenOperator);
         let roundedResult = Math.round(result * 100) / 100;
         // Display result from calling operate
-        display(roundedResult);
+        if (chosenOperator == "/" && chosenNumbers[1] == 0)
+        {
+            display("lol")
+        }
+        else
+        {
+            display(roundedResult);
+        }
         // Clear currentDisplay, chosenNumbers, chosenOperator to make space for the next operation
         currentDisplay = "";
-        chosenNumbers.splice(0, 2, parseInt(result));
+        chosenNumbers.splice(0, chosenNumbers.length, parseInt(result));
         chosenOperator = "";
     }
 })
@@ -119,6 +140,6 @@ clearButton.addEventListener("click", () =>
 {
     currentDisplay = "";
     display(0);
-    chosenNumbers.splice(0, 2, parseInt(result));
+    chosenNumbers.splice(0, chosenNumbers.length);
     chosenOperator = "";
 })
