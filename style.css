@@ -1,0 +1,42 @@
+button {
+    width: 30px;
+    height: 30px;
+}
+
+.calculator
+{
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-width: 1px;
+    width: 120px;
+    height: 150px;
+}
+
+
+.display
+{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-style: solid;
+    border-width: 1px;
+    height: 30px;
+}
+
+.body
+{
+    display: flex;
+}
+
+.leftSide
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rightSide
+{
+    display: flex;
+    flex-direction: column;
+}
