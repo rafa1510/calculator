@@ -1,3 +1,10 @@
+// Adds event listeners to all numbers that calls display() and displays the chosen number
+let numberButtons = document.querySelectorAll(".numbers");
+numberButtons.forEach((number) => 
+{
+    number.addEventListener("click", () => display(number.textContent));
+})
+
 function add(numOne, numTwo)
 {
     return numOne + numTwo;
@@ -36,4 +43,10 @@ function operate(numOne, numTwo, operator)
     {
         return divide(numOne, numTwo);
     }
+}
+
+function display(number)
+{
+    let displayBox = document.querySelector(".display");
+    displayBox.textContent = number;
 }
