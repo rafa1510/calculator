@@ -1,47 +1,3 @@
-// Display the chosen number
-let currentDisplay = "";
-let numberButtons = document.querySelectorAll(".numbers");
-numberButtons.forEach((number) => 
-{
-    number.addEventListener("click", () => 
-    {
-        currentDisplay += number.textContent;
-        display(currentDisplay);
-    });
-})
-
-// Store last chosen operator in chosenOperator and add the currentDisplay to chosenNumbers array
-let operatorButtons = document.querySelectorAll(".operators");
-operatorButtons.forEach((operator) => 
-{
-    operator.addEventListener("click", () => 
-    {
-        // This is here so that we don't push no numbers into the chosenNumbers array
-        if (currentDisplay != "")
-        {
-            chosenNumbers.push(parseInt(currentDisplay));
-        }
-
-        // Perform operation if there was already an operator clicked & there are numbers in the chosenNumbers array
-        if (chosenOperator != "" && chosenNumbers.length == 2)
-        {
-            let result = operate(chosenNumbers[0], chosenNumbers[1], chosenOperator);
-            let roundedResult = Math.round(result * 100) / 100;
-            // Display result from calling operate
-            display(roundedResult);
-            // Clear currentDisplay, chosenNumbers, chosenOperator to make space for the next operation
-            currentDisplay = "";
-            chosenNumbers.splice(0, 2, parseInt(result));
-            chosenOperator = "";
-        }
-
-        chosenOperator = operator.textContent;
-
-        // Clear currentDisplay to make way for new numbers
-        currentDisplay = "";
-    })
-})
-
 function display(number)
 {
     let displayBox = document.querySelector(".display");
@@ -88,6 +44,50 @@ function operate(numOne, numTwo, operator)
     }
 }
 
+// Display the chosen number
+let currentDisplay = "";
+let numberButtons = document.querySelectorAll(".numbers");
+numberButtons.forEach((number) => 
+{
+    number.addEventListener("click", () => 
+    {
+        currentDisplay += number.textContent;
+        display(currentDisplay);
+    });
+})
+
+// Store last chosen operator in chosenOperator and add the currentDisplay to chosenNumbers array
+let operatorButtons = document.querySelectorAll(".operators");
+operatorButtons.forEach((operator) => 
+{
+    operator.addEventListener("click", () => 
+    {
+        // This is here so that we don't push no numbers into the chosenNumbers array
+        if (currentDisplay != "")
+        {
+            chosenNumbers.push(parseInt(currentDisplay));
+        }
+
+        // Perform operation if there was already an operator clicked & there are numbers in the chosenNumbers array
+        if (chosenOperator != "" && chosenNumbers.length == 2)
+        {
+            let result = operate(chosenNumbers[0], chosenNumbers[1], chosenOperator);
+            let roundedResult = Math.round(result * 100) / 100;
+            // Display result from calling operate
+            display(roundedResult);
+            // Clear currentDisplay, chosenNumbers, chosenOperator to make space for the next operation
+            currentDisplay = "";
+            chosenNumbers.splice(0, 2, parseInt(result));
+            chosenOperator = "";
+        }
+
+        chosenOperator = operator.textContent;
+
+        // Clear currentDisplay to make way for new numbers
+        currentDisplay = "";
+    })
+})
+
 // Array that stores the numbers we are going to operate on
 let chosenNumbers = [];
 // Variable holding user's last chosen operator
@@ -111,4 +111,14 @@ equalButton.addEventListener("click", () =>
         chosenNumbers.splice(0, 2, parseInt(result));
         chosenOperator = "";
     }
+})
+
+// Clear button will clear all data to start from scratch
+let clearButton = document.querySelector(".clear");
+clearButton.addEventListener("click", () => 
+{
+    currentDisplay = "";
+    display(0);
+    chosenNumbers.splice(0, 2, parseInt(result));
+    chosenOperator = "";
 })
