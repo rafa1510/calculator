@@ -1,6 +1,24 @@
-button {
-    width: 30px;
-    height: 30px;
+body,
+button
+{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    font-size: 50px;
+}
+
+button 
+{
+    width: 90px;
+    height: 90px;
+    font-size: 30px;
 }
 
 .calculator
@@ -8,9 +26,9 @@ button {
     display: flex;
     flex-direction: column;
     border-style: solid;
-    border-width: 1px;
-    width: 120px;
-    height: 150px;
+    border-width: 3px;
+    width: 360px;
+    height: 450px;
 }
 
 
@@ -21,7 +39,8 @@ button {
     align-items: center;
     border-style: solid;
     border-width: 1px;
-    height: 30px;
+    height: 90px;
+    padding-right: 15px;
 }
 
 .body
@@ -44,4 +63,19 @@ button {
 .clear
 {
     padding: 0;
+}
+
+.operators
+{
+    background-color: orange;
+}
+
+.operators:hover
+{
+    background-color: rgb(235, 152, 0);
+}
+
+.operators:active
+{
+    background-color: orange;
 }
