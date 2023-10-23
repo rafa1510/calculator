@@ -1,19 +1,39 @@
-function add(a, b)
+function add(numOne, numTwo)
 {
-    return a + b;
+    return numOne + numTwo;
 }
 
-function subtract(a, b)
+function subtract(numOne, numTwo)
 {
-    return a - b;
+    return numOne - numTwo;
 }
 
-function multiply(a, b)
+function multiply(numOne, numTwo)
 {
-    return a * b;
+    return numOne * numTwo;
 }
 
-function divide(a, b)
+function divide(numOne, numTwo)
 {
-    return a / b;
+    return numOne / numTwo;
+}
+
+function operate(numOne, numTwo, operator)
+{
+    if (operator == "+")
+    {
+        return add(numOne, numTwo);
+    }
+    else if (operator == "-")
+    {
+        return subtract(numOne, numTwo);
+    }
+    else if (operator == "*")
+    {
+        return multiply(numOne, numTwo);
+    }
+    else if (operator == "/")
+    {
+        return divide(numOne, numTwo);
+    }
 }
