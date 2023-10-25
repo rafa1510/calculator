@@ -108,14 +108,15 @@ let chosenOperator = "";
 let equalButton = document.querySelector(".equal");
 equalButton.addEventListener("click", () => 
 {
-    // Makes sure that there are numbers in the chosenNumbers array & that there's an operator
-    if (chosenNumbers.length != 0 && chosenOperator != "")
+    // Add in second number to chosenNumbers array, since it's not being added by clicking an operator
+    if (chosenNumbers.length == 1 && chosenOperator != "" && currentDisplay != NaN && currentDisplay != "")
     {
-        // Add in second number to chosenNumbers array, since it's not being added by clicking an operator
-        if (currentDisplay != NaN)
-        {
-            chosenNumbers.push(parseInt(currentDisplay));
-        }
+        chosenNumbers.push(parseInt(currentDisplay));
+    }
+    
+    // Makes sure that there are numbers in the chosenNumbers array & that there's an operator
+    if (chosenNumbers.length == 2 && chosenOperator != "")
+    {
         let result = operate(chosenNumbers[0], chosenNumbers[1], chosenOperator);
         let roundedResult = Math.round(result * 100) / 100;
         // Display result from calling operate
